@@ -4,3 +4,4 @@
 local opt = vim.opt
 opt.shiftwidth = 4 -- Size of an indent
 opt.tabstop = 4
+vim.g.moonflyTransparent = true
