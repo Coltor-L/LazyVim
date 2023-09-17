@@ -30,7 +30,8 @@ return {
                             "config.h.in",
                             "meson.build",
                             "meson_options.txt",
-                            "build.ninja"
+                            "build.ninja",
+                            ".clang-format"
                         )(fname) or require("lspconfig.util").root_pattern(
                             "compile_commands.json",
                             "compile_flags.txt"
@@ -41,12 +42,14 @@ return {
                     },
                     cmd = {
                         "clangd",
+                        "--all-scopes-completion",
                         "--background-index",
                         "--clang-tidy",
                         "--header-insertion=iwyu",
                         "--completion-style=detailed",
-                        "--function-arg-placeholders",
                         "--fallback-style=llvm",
+                        "--suggest-missing-includes",
+                        "-j=4",
                     },
                     init_options = {
                         usePlaceholders = true,
@@ -65,6 +68,14 @@ return {
                 end,
             },
         },
+    },
+    {
+        "jinh0/eyeliner.nvim",
+        config = function()
+            require("eyeliner").setup({
+                highlight_on_key = true,
+            })
+        end,
     },
     {
         "mfussenegger/nvim-dap",
@@ -120,6 +131,7 @@ return {
                 "rust",
                 "c",
                 "cpp",
+                "cmake",
             },
         },
     },

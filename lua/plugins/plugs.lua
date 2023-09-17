@@ -27,17 +27,6 @@ return {
         keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
         config = true,
     },
-
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = { "hrsh7th/cmp-emoji" },
-        ---@param opts cmp.ConfigSchema
-        opts = function(_, opts)
-            local cmp = require("cmp")
-            opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
-        end,
-    },
-
     {
         "nvim-telescope/telescope.nvim",
         keys = {
@@ -90,6 +79,7 @@ return {
                 "rust",
                 "c",
                 "cpp",
+                "xml",
             },
         },
     },
@@ -99,16 +89,35 @@ return {
         "williamboman/mason.nvim",
         opts = {
             ensure_installed = {
-                "stylua",
-                "shellcheck",
-                "shfmt",
-                "codelldb",
-                "clang-format",
-                "codelldb",
+                -- lsp
+                "clangd",
+                "json-lsp",
+                "lua-language-server",
                 "neocmakelsp",
+                "pyright",
+                "ruff-lsp",
+                "rust-analyzer",
+                "lemminx",
+                -- dap
+                "codelldb",
+                "debugpy",
+                -- linter
                 "cmakelang",
+                "flake8", -- does ruff-lsp replace?
+                "shellcheck",
+                -- formatter
+                "xmlformatter",
+                "clang-format",
+                "cmakelang",
+                "stylua",
+                "shfmt",
             },
         },
+    },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {}, -- this is equalent to setup({}) function
     },
     {
         "L3MON4D3/LuaSnip",
@@ -118,9 +127,6 @@ return {
     },
     {
         "hrsh7th/nvim-cmp",
-        dependencies = {
-            "hrsh7th/cmp-emoji",
-        },
         ---@param opts cmp.ConfigSchema
         opts = function(_, opts)
             local has_words_before = function()
@@ -132,6 +138,8 @@ return {
 
             local luasnip = require("luasnip")
             local cmp = require("cmp")
+            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
             opts.mapping = vim.tbl_extend("force", opts.mapping, {
                 ["<Tab>"] = cmp.mapping(function(fallback)
