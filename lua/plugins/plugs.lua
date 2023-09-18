@@ -13,7 +13,7 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         opts = {
-            theme = "gruvbox",
+            theme = "moonfly",
         },
     },
     {
@@ -48,76 +48,13 @@ return {
             },
         },
     },
-
-    {
-        "telescope.nvim",
-        dependencies = {
-            "nvim-telescope/telescope-fzf-native.nvim",
-            build = "make",
-            config = function()
-                require("telescope").load_extension("fzf")
-            end,
-        },
-    },
-
-    -- add more treesitter parsers
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = {
-            ensure_installed = {
-                "bash",
-                "html",
-                "json",
-                "lua",
-                "markdown",
-                "markdown_inline",
-                "python",
-                "query",
-                "regex",
-                "vim",
-                "yaml",
-                "rust",
-                "c",
-                "cpp",
-                "xml",
-            },
-        },
-    },
-
-    -- add any tools you want to have installed below
-    {
-        "williamboman/mason.nvim",
-        opts = {
-            ensure_installed = {
-                -- lsp
-                "clangd",
-                "json-lsp",
-                "lua-language-server",
-                "neocmakelsp",
-                "pyright",
-                "ruff-lsp",
-                "rust-analyzer",
-                "lemminx",
-                -- dap
-                "codelldb",
-                "debugpy",
-                -- linter
-                "cmakelang",
-                "flake8", -- does ruff-lsp replace?
-                "shellcheck",
-                -- formatter
-                "xmlformatter",
-                "clang-format",
-                "cmakelang",
-                "stylua",
-                "shfmt",
-            },
-        },
-    },
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
-        opts = {}, -- this is equalent to setup({}) function
+        opts = {
+            check_ts = true,
+            enable_afterquote = false,
+        },
     },
     {
         "L3MON4D3/LuaSnip",

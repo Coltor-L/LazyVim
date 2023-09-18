@@ -1,20 +1,5 @@
 return {
     {
-        "williamboman/mason.nvim",
-        opts = {
-            ensure_installed = {
-                "stylua",
-                "shellcheck",
-                "shfmt",
-                "codelldb",
-                "clang-format",
-                "codelldb",
-                "neocmakelsp",
-                "cmakelang",
-            },
-        },
-    },
-    {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {
@@ -114,6 +99,19 @@ return {
         },
     },
     {
+        "HiPhish/rainbow-delimiters.nvim",
+    },
+    {
+        "telescope.nvim",
+        dependencies = {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make",
+            config = function()
+                require("telescope").load_extension("fzf")
+            end,
+        },
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
         opts = {
             ensure_installed = {
@@ -131,11 +129,37 @@ return {
                 "rust",
                 "c",
                 "cpp",
-                "cmake",
+                "xml",
             },
         },
     },
     {
-        "HiPhish/rainbow-delimiters.nvim",
+        "williamboman/mason.nvim",
+        opts = {
+            ensure_installed = {
+                -- lsp
+                "clangd",
+                "json-lsp",
+                "lua-language-server",
+                "neocmakelsp",
+                "pyright",
+                "ruff-lsp",
+                "rust-analyzer",
+                "lemminx",
+                -- dap
+                "codelldb",
+                "debugpy",
+                -- linter
+                "cmakelang",
+                "flake8", -- does ruff-lsp replace?
+                "shellcheck",
+                -- formatter
+                "xmlformatter",
+                "clang-format",
+                "cmakelang",
+                "stylua",
+                "shfmt",
+            },
+        },
     },
 }
