@@ -158,7 +158,6 @@ return {
                 "ruff-lsp",
                 "rust-analyzer",
                 "lemminx",
-                -- dap
                 "codelldb",
                 "debugpy",
                 -- linter
