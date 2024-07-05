@@ -1,8 +1,9 @@
 return {
     {
         "bluz71/vim-moonfly-colors",
-        lazy = false,
         name = "moonfly",
+        lazy = false,
+        priority = 1000,
     },
     {
         "LazyVim/LazyVim",
@@ -12,15 +13,11 @@ return {
     },
     {
         "nvim-lualine/lualine.nvim",
-        opts = {
-            theme = "moonfly",
-        },
     },
     {
         "folke/trouble.nvim",
         opts = { use_diagnostic_signs = true },
     },
-
     {
         "simrat39/symbols-outline.nvim",
         cmd = "SymbolsOutline",
@@ -73,34 +70,43 @@ return {
                     and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
             end
 
-            local luasnip = require("luasnip")
             local cmp = require("cmp")
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")
             cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
+            local win_opt = {
+                winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
+            }
+            opts.window = {
+                completion = cmp.config.window.bordered(win_opt),
+                documentation = cmp.config.window.bordered(win_opt),
+            }
+            opts.window.completion.scrollbar = false
+            opts.experimental = {
+                ghost_text = true,
+            }
+
+            opts.completion.completeopt = "menuone,noselect"
+            opts.performance = {
+                max_view_entries = 7,
+            }
+
             opts.mapping = vim.tbl_extend("force", opts.mapping, {
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        cmp.select_next_item()
-                    -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-                    -- this way you will only jump inside the snippet region
-                    elseif luasnip.expand_or_jumpable() then
-                        luasnip.expand_or_jump()
-                    elseif has_words_before() then
-                        cmp.complete()
+                        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                     else
                         fallback()
                     end
                 end, { "i", "s" }),
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        cmp.select_prev_item()
-                    elseif luasnip.jumpable(-1) then
-                        luasnip.jump(-1)
+                        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
                     else
                         fallback()
                     end
                 end, { "i", "s" }),
+                ["<CR>"] = cmp.mapping.confirm(),
             })
         end,
     },

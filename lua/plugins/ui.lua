@@ -17,6 +17,15 @@ return {
         },
     },
     {
+        "nvim-neo-tree/neo-tree.nvim",
+        opts = {
+            filesystem = {
+                bind_to_cwd = true,
+                follow_current_file = { enabled = false },
+            },
+        },
+    },
+    {
         "rcarriga/nvim-dap-ui",
       -- stylua: ignore
       keys = {
@@ -34,6 +43,14 @@ return {
                 dapui.open({})
             end
         end,
+    },
+    {
+        "folke/noice.nvim",
+        opts = {
+            presets = {
+                lsp_doc_border = true,
+            },
+        },
     },
     {
         "rcarriga/nvim-notify",

@@ -6,14 +6,51 @@ vim.opt.tabstop = 4
 vim.opt.conceallevel = 0
 --- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.wrap = false
-vim.g.moonflyTransparent = false
+vim.g.moonflyNormalFloat = true
+vim.g.moonflyCursorColor = true
+vim.g.moonflyUnderlineMatchParen = true
+vim.g.moonflyVirtualTextColor = true
+vim.g.moonflyWinSeparator = 2
+vim.opt.fillchars = {
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+    vert = "┃",
+    vertleft = "┫",
+    vertright = "┣",
+    verthoriz = "╋",
+}
 
 vim.o.foldcolumn = "0"
-vim.o.foldlevel = 20 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevel = 20
 vim.o.foldlevelstart = 20
 vim.o.foldminlines = 0
 vim.o.foldenable = true
---vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
---vim.opt.foldmethod = "expr"
+vim.g.autoformat = false
+vim.o.pumblend = 0
 
 vim.filetype.add({ extension = { vertex = "glsl", frag = "glsl" } })
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "single",
+})
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signatureHelp, {
+    border = "single",
+})
+vim.diagnostic.config({ float = { border = "single" } })
+
+vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "#9DA9A0" })
+local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
+vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = "moonfly",
+    callback = function()
+        vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "NONE", fg = "#949494" })
+
+        vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = "NONE", fg = "#ff5454" })
+        vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = "NONE", fg = "#e3c78a" })
+        vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { bg = "NONE", fg = "#74b2ff" })
+        vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = "NONE", fg = "#79dac8" })
+        vim.api.nvim_set_hl(0, "DiagnosticVirtualTextOk", { bg = "NONE", fg = "#36c692" })
+    end,
+    group = custom_highlight,
+})

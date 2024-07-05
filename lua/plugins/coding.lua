@@ -2,6 +2,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         opts = {
+            inlay_hints = { enabled = false },
             servers = {
                 clangd = {
                     keys = {
@@ -22,35 +23,20 @@ return {
                             "compile_flags.txt"
                         )(fname) or require("lspconfig.util").find_git_ancestor(fname)
                     end,
-                    capabilities = {
-                        offsetEncoding = { "utf-16" },
-                    },
                     cmd = {
                         "clangd",
                         "--all-scopes-completion",
-                        "--background-index",
                         "--clang-tidy",
                         "--header-insertion=iwyu",
                         "--completion-style=detailed",
                         "--fallback-style=llvm",
-                        "--suggest-missing-includes",
-                        "-j=4",
+                        "--function-arg-placeholders=false",
                     },
                     init_options = {
-                        usePlaceholders = true,
                         completeUnimported = true,
                         clangdFileStatus = true,
                     },
                 },
-            },
-            setup = {
-                clangd = function(_, opts)
-                    local clangd_ext_opts = require("lazyvim.util").opts("clangd_extensions.nvim")
-                    require("clangd_extensions").setup(
-                        vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts })
-                    )
-                    return false
-                end,
             },
         },
     },
@@ -68,35 +54,6 @@ return {
         opts = function()
             require("dap.ext.vscode").load_launchjs(nil, { codelldb = { "c", "cpp", "rust" } })
         end,
-    },
-    {
-        "p00f/clangd_extensions.nvim",
-        lazy = true,
-        config = function() end,
-        opts = {
-            inlay_hints = {
-                inline = true,
-            },
-            ast = {
-                role_icons = {
-                    type = "",
-                    declaration = "",
-                    expression = "",
-                    specifier = "",
-                    statement = "",
-                    ["template argument"] = "",
-                },
-                kind_icons = {
-                    Compound = "",
-                    Recovery = "",
-                    TranslationUnit = "",
-                    PackExpansion = "",
-                    TemplateTypeParm = "",
-                    TemplateTemplateParm = "",
-                    TemplateParamObject = "",
-                },
-            },
-        },
     },
     {
         "HiPhish/rainbow-delimiters.nvim",
@@ -172,18 +129,5 @@ return {
                 "shfmt",
             },
         },
-    },
-    {
-        "vhyrro/luarocks.nvim",
-        priority = 1000,
-        config = true,
-    },
-    {
-        "rest-nvim/rest.nvim",
-        ft = "http",
-        dependencies = { "luarocks.nvim" },
-        config = function()
-            require("rest-nvim").setup()
-        end,
     },
 }
