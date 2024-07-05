@@ -3,6 +3,7 @@
 -- Add any additional options here
 vim.opt.shiftwidth = 4 -- Size of an indent
 vim.opt.tabstop = 4
+vim.o.expandtab = true
 vim.opt.conceallevel = 0
 --- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.wrap = false
