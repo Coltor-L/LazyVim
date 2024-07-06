@@ -25,32 +25,44 @@ return {
         config = true,
     },
     {
-        "nvim-telescope/telescope.nvim",
-        dependencies = {
-            "nvim-telescope/telescope-fzf-native.nvim",
-            build = "make",
-            config = function()
-                require("telescope").load_extension("fzf")
-            end,
-        },
-        keys = {
-      -- add a keymap to browse plugin files
-      -- stylua: ignore
-      {
-        "<leader>fp",
-        function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-        desc = "Find Plugin File",
-      },
-        },
-        -- change some options
-        opts = {
-            defaults = {
-                layout_strategy = "horizontal",
-                layout_config = { prompt_position = "top" },
-                sorting_strategy = "ascending",
-                winblend = 0,
-            },
-        },
+        "ibhagwan/fzf-lua",
+        config = function()
+            require("fzf-lua").setup({
+                "default-title",
+                fzf_opts = {
+                    ["--no-multi"] = true,
+                    ["--cycle"] = true,
+                },
+                keymap = { 
+                    builtin = {
+                        ["<F1>"] = "toggle-help",
+                        ["<F2>"] = "toggle-fullscreen",
+                        ["<F3>"] = "toggle-preview-wrap",
+                        ["<F4>"] = "toggle-preview",
+                        ["<F5>"] = "toggle-preview-ccw",
+                        ["<F6>"] = "toggle-preview-cw",
+                        ["<S-down>"] = "preview-page-down",
+                        ["<S-up>"] = "preview-page-up",
+                        ["<S-left>"] = "preview-page-reset",
+                    },
+                    fzf = {
+                        ["tab"] = "down",
+                        ["shift-tab"] = "up",
+                        ["ctrl-z"] = "abort",
+                        ["ctrl-u"] = "unix-line-discard",
+                        ["ctrl-f"] = "half-page-down",
+                        ["ctrl-b"] = "half-page-up",
+                        ["ctrl-a"] = "beginning-of-line",
+                        ["ctrl-e"] = "end-of-line",
+                        ["alt-a"] = "toggle-all",
+                        ["f3"] = "toggle-preview-wrap",
+                        ["f4"] = "toggle-preview",
+                        ["shift-down"] = "preview-page-down",
+                        ["shift-up"] = "preview-page-up",
+                    },
+                },
+            })
+        end,
     },
     {
         "windwp/nvim-autopairs",

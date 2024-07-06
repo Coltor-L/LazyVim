@@ -29,6 +29,7 @@ vim.o.foldminlines = 0
 vim.o.foldenable = true
 vim.g.autoformat = false
 vim.o.pumblend = 0
+vim.o.termguicolors = true
 
 vim.filetype.add({ extension = { vertex = "glsl", frag = "glsl" } })
 

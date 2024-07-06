@@ -16,7 +16,8 @@ require("lazy").setup({
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
         { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
-        { import = "lazyvim.plugins.extras.editor.telescope" },
+
+        { import = "lazyvim.plugins.extras.editor.fzf" },
         { import = "lazyvim.plugins.extras.editor.harpoon2" },
         { import = "lazyvim.plugins.extras.editor.inc-rename" },
         { import = "lazyvim.plugins.extras.editor.overseer" },
