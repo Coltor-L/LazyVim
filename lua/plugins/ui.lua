@@ -3,6 +3,8 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         opts = {
             filesystem = {
+                bind_to_cwd = true,
+                follow_current_file = { enabled = false },
                 filtered_items = {
                     visible = false,
                     show_hidden_count = true,
@@ -17,26 +19,28 @@ return {
         },
     },
     {
-        "nvim-neo-tree/neo-tree.nvim",
-        opts = {
-            filesystem = {
-                bind_to_cwd = true,
-                follow_current_file = { enabled = false },
+        "rcarriga/nvim-dap-ui",
+        keys = {
+            {
+                "<leader>du",
+                function()
+                    require("dapui").toggle({})
+                end,
+                desc = "Dap UI",
+            },
+            {
+                "<leader>de",
+                function()
+                    require("dapui").eval()
+                end,
+                desc = "Eval",
+                mode = { "n", "v" },
             },
         },
-    },
-    {
-        "rcarriga/nvim-dap-ui",
-      -- stylua: ignore
-      keys = {
-        { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-        { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-      },
         opts = {},
         config = function(_, opts)
             local dap = require("dap")
             local dapui = require("dapui")
-            local neotree = require("neo-tree")
             dapui.setup(opts)
             dap.listeners.after.event_initialized["dapui_config"] = function()
                 vim.cmd.Neotree("close")

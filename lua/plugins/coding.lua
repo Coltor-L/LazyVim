@@ -2,6 +2,11 @@ return {
     {
         "neovim/nvim-lspconfig",
         opts = {
+            setup = {
+                rust_analyzer = function()
+                    return true
+                end,
+            },
             inlay_hints = { enabled = false },
             servers = {
                 clangd = {
@@ -59,16 +64,6 @@ return {
         "HiPhish/rainbow-delimiters.nvim",
     },
     {
-        "telescope.nvim",
-        dependencies = {
-            "nvim-telescope/telescope-fzf-native.nvim",
-            build = "make",
-            config = function()
-                require("telescope").load_extension("fzf")
-            end,
-        },
-    },
-    {
         "lervag/vimtex",
     },
     {
@@ -113,7 +108,6 @@ return {
                 "neocmakelsp",
                 "pyright",
                 "ruff-lsp",
-                "rust-analyzer",
                 "lemminx",
                 "codelldb",
                 "debugpy",

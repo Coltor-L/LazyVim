@@ -26,6 +26,13 @@ return {
     },
     {
         "nvim-telescope/telescope.nvim",
+        dependencies = {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make",
+            config = function()
+                require("telescope").load_extension("fzf")
+            end,
+        },
         keys = {
       -- add a keymap to browse plugin files
       -- stylua: ignore
@@ -63,13 +70,6 @@ return {
         "hrsh7th/nvim-cmp",
         ---@param opts cmp.ConfigSchema
         opts = function(_, opts)
-            local has_words_before = function()
-                unpack = unpack or table.unpack
-                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                return col ~= 0
-                    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-            end
-
             local cmp = require("cmp")
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")
             cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
