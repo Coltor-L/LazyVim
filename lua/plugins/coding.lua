@@ -46,34 +46,10 @@ return {
         },
     },
     {
-        "jinh0/eyeliner.nvim",
-        config = function()
-            require("eyeliner").setup({
-                highlight_on_key = true,
-            })
-        end,
-    },
-    {
         "mfussenegger/nvim-dap",
         optional = true,
         opts = function()
             require("dap.ext.vscode").load_launchjs(nil, { codelldb = { "c", "cpp", "rust" } })
-        end,
-    },
-    {
-        "HiPhish/rainbow-delimiters.nvim",
-    },
-    {
-        "lervag/vimtex",
-        lazy = true,
-        init = function()
-            vim.g.vimtex_view_method = "zathura"
-        end,
-    },
-    {
-        "iamcco/markdown-preview.nvim",
-        config = function()
-            vim.fn["mkdp#util#install"]()
         end,
     },
     {
@@ -128,4 +104,38 @@ return {
             },
         },
     },
+    {
+        "mg979/vim-visual-multi",
+        event = "VeryLazy",
+        init = function()
+            vim.g.VM_set_statusline = 0
+        end,
+    },
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = { "kevinhwang91/promise-async" },
+        config = function()
+            vim.o.foldcolumn = "1"
+            vim.o.foldlevel = 99
+            vim.o.foldlevelstart = 99
+            vim.o.foldenable = true
+
+            vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
+            vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
+            vim.keymap.set("n", "zk", function()
+                local winid = require("ufo").peekFoldedLinesUnderCursor()
+                if not winid then
+                    vim.lsp.buf.hover()
+                end
+            end, { desc = "peek Fold" })
+
+            require("ufo").setup({
+                provider_selector = function(bufnr, filetype, buftype)
+                    return { "lsp", "indent" }
+                end,
+            })
+        end,
+    },
+    {
+    }
 }

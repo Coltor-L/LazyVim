@@ -5,7 +5,6 @@ vim.opt.shiftwidth = 4 -- Size of an indent
 vim.opt.tabstop = 4
 vim.o.expandtab = true
 vim.opt.conceallevel = 0
---- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.wrap = false
 vim.g.moonflyNormalFloat = true
 vim.g.moonflyCursorColor = true
@@ -22,11 +21,6 @@ vim.opt.fillchars = {
     verthoriz = "╋",
 }
 
-vim.o.foldcolumn = "0"
-vim.o.foldlevel = 20
-vim.o.foldlevelstart = 20
-vim.o.foldminlines = 0
-vim.o.foldenable = true
 vim.g.autoformat = false
 vim.o.pumblend = 0
 vim.o.termguicolors = true
@@ -56,3 +50,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end,
     group = custom_highlight,
 })
+
+vim.opt.spelllang = "en_us"
+vim.opt.spell = true

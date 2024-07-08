@@ -12,9 +12,6 @@ return {
         },
     },
     {
-        "nvim-lualine/lualine.nvim",
-    },
-    {
         "folke/trouble.nvim",
         opts = { use_diagnostic_signs = true },
     },
@@ -33,7 +30,7 @@ return {
                     ["--no-multi"] = true,
                     ["--cycle"] = true,
                 },
-                keymap = { 
+                keymap = {
                     builtin = {
                         ["<F1>"] = "toggle-help",
                         ["<F2>"] = "toggle-fullscreen",
@@ -65,26 +62,10 @@ return {
         end,
     },
     {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        opts = {
-            check_ts = true,
-            enable_afterquote = false,
-        },
-    },
-    {
-        "L3MON4D3/LuaSnip",
-        keys = function()
-            return {}
-        end,
-    },
-    {
         "hrsh7th/nvim-cmp",
         ---@param opts cmp.ConfigSchema
         opts = function(_, opts)
             local cmp = require("cmp")
-            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
             local win_opt = {
                 winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",

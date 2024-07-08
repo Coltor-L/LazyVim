@@ -4,7 +4,6 @@ return {
         opts = {
             filesystem = {
                 bind_to_cwd = true,
-                follow_current_file = { enabled = false },
                 filtered_items = {
                     visible = false,
                     show_hidden_count = true,

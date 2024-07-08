@@ -14,8 +14,6 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
     spec = {
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-        { import = "lazyvim.plugins.extras.ui.mini-starter" },
-
 
         { import = "lazyvim.plugins.extras.editor.fzf" },
         { import = "lazyvim.plugins.extras.editor.harpoon2" },
@@ -29,6 +27,14 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.cmake" },
         { import = "lazyvim.plugins.extras.lang.python" },
         { import = "lazyvim.plugins.extras.lang.json" },
+        { import = "lazyvim.plugins.extras.coding.neogen" },
+        { import = "lazyvim.plugins.extras.coding.neogen" },
+        { import = "lazyvim.plugins.extras.lang.markdown" },
+        { import = "lazyvim.plugins.extras.lang.sql" },
+        { import = "lazyvim.plugins.extras.lang.tex" },
+        { import = "lazyvim.plugins.extras.lang.toml" },
+        { import = "lazyvim.plugins.extras.test.core" },
+        { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 
         { import = "plugins" },
     },
@@ -52,7 +58,6 @@ require("lazy").setup({
                 "tohtml",
                 "tutor",
                 "zipPlugin",
-                "flash",
             },
         },
     },
