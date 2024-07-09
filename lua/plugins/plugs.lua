@@ -26,6 +26,11 @@ return {
         config = function()
             require("fzf-lua").setup({
                 "default-title",
+                previewers = {
+                    builtin = {
+                        scrollbar = false,
+                    }
+                },
                 fzf_opts = {
                     ["--no-multi"] = true,
                     ["--cycle"] = true,
