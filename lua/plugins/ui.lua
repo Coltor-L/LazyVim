@@ -77,7 +77,6 @@ return {
                     require("scrollbar.handlers.search").handler.show(plist.start_pos)
                 end,
                 override_lens = function() end,
-                calm_down = true,
                 nearest_only = true,
                 nearest_float_when = "never",
                 virt_priority = 0,
@@ -106,12 +105,6 @@ return {
             vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
             vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
             vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-            vim.cmd([[
-        augroup scrollbar_search_hide
-            autocmd!
-            autocmd CmdlineLeave : lua require('scrollbar.handlers.search').handler.hide()
-        augroup END
-    ]])
         end,
     },
     {
