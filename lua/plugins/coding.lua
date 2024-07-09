@@ -49,8 +49,18 @@ return {
         "mfussenegger/nvim-dap",
         optional = true,
         opts = function()
-            require("dap.ext.vscode").load_launchjs(nil, { codelldb = { "c", "cpp", "rust" } })
+            require("mason-nvim-dap").setup({
+                ensure_installed = { "codelldb" },
+                automatic_installation = true,
+                handlers = {},
+            })
+            require("dap.ext.vscode").load_launchjs(nil, { codelldb = { "rust", "c", "cpp"} })
         end,
+    },
+    {
+        "Civitasv/cmake-tools.nvim",
+        cmake_executor = { name = "overseer", opts = {} },
+        cmake_runner = { name = "overseer", opts = {} },
     },
     {
         "nvim-treesitter/nvim-treesitter",
@@ -136,6 +146,4 @@ return {
             })
         end,
     },
-    {
-    }
 }

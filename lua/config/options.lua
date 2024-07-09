@@ -23,7 +23,7 @@ vim.opt.fillchars = {
 
 vim.g.autoformat = false
 vim.o.pumblend = 0
-vim.o.termguicolors = true
+vim.g.bigfile_size = 1024 * 1024 * 100
 
 vim.filetype.add({ extension = { vertex = "glsl", frag = "glsl" } })
 
@@ -53,3 +53,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 vim.opt.spelllang = "en_us"
 vim.opt.spell = true
+
+vim.o.smartcase = false
+vim.o.ignorecase = false

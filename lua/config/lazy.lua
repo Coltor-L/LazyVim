@@ -35,6 +35,7 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.toml" },
         { import = "lazyvim.plugins.extras.test.core" },
         { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+        { import = "lazyvim.plugins.extras.coding.mini-surround" },
 
         { import = "plugins" },
     },
