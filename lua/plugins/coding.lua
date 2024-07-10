@@ -2,11 +2,6 @@ return {
     {
         "neovim/nvim-lspconfig",
         opts = {
-            setup = {
-                rust_analyzer = function()
-                    return true
-                end,
-            },
             inlay_hints = { enabled = false },
             servers = {
                 clangd = {
@@ -54,13 +49,16 @@ return {
                 automatic_installation = true,
                 handlers = {},
             })
-            require("dap.ext.vscode").load_launchjs(nil, { codelldb = { "rust", "c", "cpp"} })
+            require("dap.ext.vscode").load_launchjs(nil, { codelldb = { "rust", "c", "cpp" } })
         end,
     },
     {
         "Civitasv/cmake-tools.nvim",
-        cmake_executor = { name = "overseer", opts = {} },
-        cmake_runner = { name = "overseer", opts = {} },
+        opts = {
+            cmake_executor = { name = "overseer", opts = {} },
+            cmake_runner = { name = "overseer", opts = {} },
+            cmake_virtual_text_support = false,
+        },
     },
     {
         "nvim-treesitter/nvim-treesitter",
