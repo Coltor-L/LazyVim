@@ -120,6 +120,20 @@ return {
         end,
     },
     {
+        "folke/flash.nvim",
+        opts = {
+            search = {
+                multi_window = false,
+            },
+            modes = {
+                char = {
+                    multi_line = false,
+                    highlight = { backdrop = false },
+                },
+            },
+        },
+    },
+    {
         "kevinhwang91/nvim-ufo",
         dependencies = { "kevinhwang91/promise-async" },
         config = function()

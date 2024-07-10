@@ -34,7 +34,6 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.coding.neogen" },
         { import = "lazyvim.plugins.extras.lang.markdown" },
         { import = "lazyvim.plugins.extras.lang.sql" },
-        { import = "lazyvim.plugins.extras.lang.tex" },
         { import = "lazyvim.plugins.extras.lang.toml" },
         { import = "lazyvim.plugins.extras.test.core" },
         { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
