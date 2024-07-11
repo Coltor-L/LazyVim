@@ -23,7 +23,6 @@ vim.opt.fillchars = {
 
 vim.g.autoformat = false
 vim.o.pumblend = 0
-vim.g.bigfile_size = 1024 * 1024 * 100
 
 vim.filetype.add({ extension = { vertex = "glsl", frag = "glsl" } })
 
