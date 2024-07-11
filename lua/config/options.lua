@@ -34,7 +34,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 vim.diagnostic.config({ float = { border = "single" } })
 
-vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "#9DA9A0" })
 local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
 vim.api.nvim_create_autocmd("ColorScheme", {
     pattern = "moonfly",
@@ -55,3 +54,4 @@ vim.opt.spell = true
 
 vim.o.smartcase = false
 vim.o.ignorecase = false
+vim.opt.background = 'dark'

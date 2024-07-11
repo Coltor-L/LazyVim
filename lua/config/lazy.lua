@@ -31,7 +31,6 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.python" },
         { import = "lazyvim.plugins.extras.lang.json" },
         { import = "lazyvim.plugins.extras.coding.neogen" },
-        { import = "lazyvim.plugins.extras.coding.neogen" },
         { import = "lazyvim.plugins.extras.lang.markdown" },
         { import = "lazyvim.plugins.extras.lang.sql" },
         { import = "lazyvim.plugins.extras.lang.toml" },
@@ -39,7 +38,6 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
         { import = "lazyvim.plugins.extras.coding.mini-surround" },
         { import = "lazyvim.plugins.extras.util.rest" },
-        { import = "lazyvim.plugins.extras.coding.luasnip" },
 
         { import = "plugins" },
     },

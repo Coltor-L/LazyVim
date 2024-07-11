@@ -29,7 +29,7 @@ return {
                 previewers = {
                     builtin = {
                         scrollbar = false,
-                    }
+                    },
                 },
                 fzf_opts = {
                     ["--no-multi"] = true,
@@ -79,14 +79,17 @@ return {
                 completion = cmp.config.window.bordered(win_opt),
                 documentation = cmp.config.window.bordered(win_opt),
             }
-            opts.window.completion.scrollbar = false
-            opts.experimental = {
-                ghost_text = true,
-            }
+            opts.window.completion.scrollbar = true
 
-            opts.completion.completeopt = "menuone,noselect"
-            opts.performance = {
-                max_view_entries = 7,
+            opts.completion.completeopt = "menu,menuone,noselect"
+
+            opts.matching = {
+                disallow_fuzzy_matching = true,
+                disallow_fullfuzzy_matching = true,
+                disallow_partial_fuzzy_matching = true,
+                disallow_partial_matching = true,
+                disallow_prefix_unmatching = false,
+                disallow_symbol_nonprefix_matching = true
             }
 
             opts.mapping = vim.tbl_extend("force", opts.mapping, {

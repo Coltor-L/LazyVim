@@ -55,6 +55,42 @@ return {
         end,
     },
     {
+        "akinsho/bufferline.nvim",
+        opts = {
+            highlights = {
+                separator = {
+                    fg = "#BDBDBD",
+                },
+            },
+            options = {
+                always_show_bufferline = true,
+                show_close_icon = false,
+                show_buffer_close_icons = true,
+                separator_style = "thick",
+                indicator = {
+                    style = "none",
+                },
+                offsets = {
+                    {
+                        filetype = "dapui_scopes",
+                    },
+                    {
+                        filetype = "Outline",
+                    },
+                    {
+                        filetype = "neo-tree",
+                    },
+                    {
+                        filetype = "trouble",
+                    },
+                    {
+                        filetype = "spectre_panel",
+                    }
+                },
+            },
+        },
+    },
+    {
         "petertriho/nvim-scrollbar",
         config = function(_, opts)
             opts.handlers = {
