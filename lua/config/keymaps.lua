@@ -5,3 +5,12 @@
 --
 --
 vim.keymap.set("n", "<leader>cD", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+
+if vim.fn.exists(":CMakeBuild") == 2 then
+    vim.keymap.set('n', '<leader>C', "", {desc = "CMake"})
+    vim.keymap.set('n', '<leader>Cg', ':CMakeGenerate<CR>', {desc = "Generate"})
+    vim.keymap.set('n', '<leader>Cb', ':CMakeBuild<CR>', {desc = "Build"})
+    vim.keymap.set('n', '<leader>Cr', ':CMakeRun<CR>', {desc = "Run"})
+    vim.keymap.set('n', '<leader>Ct', ':CMakeRunTest<CR>', {desc = "Run Test"})
+    vim.keymap.set('n', '<leader>Cd', ':CMakeDebug<CR>', {desc = "Debug"})
+end

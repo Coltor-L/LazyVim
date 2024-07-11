@@ -55,3 +55,7 @@ vim.opt.spell = true
 vim.o.smartcase = false
 vim.o.ignorecase = false
 vim.opt.background = 'dark'
+vim.o.autowrite = true
+vim.o.autowriteall = true
+
+vim.opt.swapfile = false -- sue me
