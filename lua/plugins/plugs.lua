@@ -124,14 +124,14 @@ return {
                 mapping = cmp.mapping.preset.cmdline({
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
-                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
                         else
                             fallback()
                         end
                     end),
                     ["<S-Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
-                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
                         else
                             fallback()
                         end
@@ -146,14 +146,14 @@ return {
                 mapping = cmp.mapping.preset.cmdline({
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
-                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
                         else
                             fallback()
                         end
                     end),
                     ["<S-Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
-                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
                         else
                             fallback()
                         end
