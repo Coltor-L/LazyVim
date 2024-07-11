@@ -82,6 +82,7 @@ return {
             opts.window.completion.scrollbar = true
 
             opts.completion.completeopt = "menu,menuone,noselect"
+            opts.completion.keyword_length = 1
 
             opts.matching = {
                 disallow_fuzzy_matching = true,
@@ -89,7 +90,7 @@ return {
                 disallow_partial_fuzzy_matching = true,
                 disallow_partial_matching = true,
                 disallow_prefix_unmatching = false,
-                disallow_symbol_nonprefix_matching = true
+                disallow_symbol_nonprefix_matching = true,
             }
 
             opts.mapping = vim.tbl_extend("force", opts.mapping, {
@@ -108,6 +109,57 @@ return {
                     end
                 end, { "i", "s" }),
                 ["<CR>"] = cmp.mapping.confirm(),
+            })
+        end,
+    },
+    {
+        "hrsh7th/cmp-cmdline",
+        after = "nvim-cmp", -- Ensure it loads after nvim-cmp
+        config = function()
+            local cmp = require("cmp")
+            cmp.setup.cmdline(":", {
+                sources = {
+                    { name = "cmdline" },
+                },
+                mapping = cmp.mapping.preset.cmdline({
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            fallback()
+                        end
+                    end),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            fallback()
+                        end
+                    end),
+                    ["<CR>"] = cmp.mapping.confirm(),
+                }),
+            })
+            cmp.setup.cmdline("/", {
+                sources = {
+                    { name = "buffer" },
+                },
+                mapping = cmp.mapping.preset.cmdline({
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            fallback()
+                        end
+                    end),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            fallback()
+                        end
+                    end),
+                    ["<CR>"] = cmp.mapping.confirm(),
+                }),
             })
         end,
     },
