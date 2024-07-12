@@ -26,6 +26,7 @@ return {
         config = function()
             require("fzf-lua").setup({
                 "default-title",
+                fzf_colors = true,
                 previewers = {
                     builtin = {
                         scrollbar = false,
@@ -34,6 +35,7 @@ return {
                 fzf_opts = {
                     ["--no-multi"] = true,
                     ["--cycle"] = true,
+                    ["--exact"] = true,
                 },
                 keymap = {
                     builtin = {
