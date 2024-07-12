@@ -176,4 +176,87 @@ return {
             vim.cmd([[do FileType]])
         end,
     },
+    {
+        "ThePrimeagen/refactoring.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {
+            show_success_message = true,
+            prompt_func_return_type = {
+                go = true,
+                cpp = true,
+                c = true,
+                java = true,
+            },
+            prompt_func_param_type = {
+                go = true,
+                cpp = true,
+                c = true,
+                java = true,
+            },
+        },
+        keys = {
+            {
+                "<leader>r",
+                desc = "refactor+",
+                mode = { "x", "n" },
+            },
+            {
+                "<leader>rf",
+                desc = "Extract to Function",
+                function()
+                    require("refactoring").refactor("Extract Function")
+                end,
+                mode = { "x" },
+            },
+            {
+                "<leader>rF",
+                function()
+                    require("refactoring").refactor("Extract Function To File")
+                end,
+                desc = "Extract to Function to File",
+                mode = { "x" },
+            },
+            {
+                "<leader>rv",
+                function()
+                    require("refactoring").refactor("Extract Variable")
+                end,
+                desc = "Extract to Variable",
+                mode = { "x" },
+            },
+            {
+                "<leader>rI",
+                function()
+                    require("refactoring").refactor("Inline Function")
+                end,
+                desc = "Inline Function",
+                mode = { "n" },
+            },
+            {
+                "<leader>ri",
+                ":Refactor inline_var",
+                desc = "Inline Variable",
+                mode = { "n" },
+            },
+            {
+                "<leader>rb",
+                function()
+                    require("refactoring").refactor("Extract Block")
+                end,
+                desc = "Extract Block",
+                mode = { "n" },
+            },
+            {
+                "<leader>rB",
+                function()
+                    require("refactoring").refactor("Extract Block To File")
+                end,
+                desc = "Extract Block to File",
+                mode = { "n" },
+            },
+        },
+    },
 }

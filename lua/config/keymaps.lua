@@ -4,7 +4,6 @@
 --
 --
 --
-vim.keymap.set("n", "<leader>cD", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 
 if vim.fn.exists(":CMakeBuild") == 2 then
     vim.keymap.set('n', '<leader>C', "", {desc = "CMake"})
