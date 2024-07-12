@@ -25,7 +25,8 @@ return {
         "ibhagwan/fzf-lua",
         config = function()
             require("fzf-lua").setup({
-                "default-title",
+                "max-perf",
+                default_previewer = "builtin",
                 fzf_colors = true,
                 previewers = {
                     builtin = {
