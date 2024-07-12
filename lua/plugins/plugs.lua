@@ -23,51 +23,40 @@ return {
     },
     {
         "ibhagwan/fzf-lua",
-        config = function()
-            require("fzf-lua").setup({
-                "max-perf",
-                default_previewer = "builtin",
-                fzf_colors = true,
-                previewers = {
-                    builtin = {
-                        scrollbar = false,
-                    },
-                },
+        opts = {
+            "max-perf",
+            fzf_opts = {
+                ["--no-multi"] = true,
+                ["--cycle"] = true,
+                ["--exact"] = true,
+            },
+            files = {
                 fzf_opts = {
-                    ["--no-multi"] = true,
-                    ["--cycle"] = true,
-                    ["--exact"] = true,
+                    ["--ansi"] = true,
                 },
-                keymap = {
-                    builtin = {
-                        ["<F1>"] = "toggle-help",
-                        ["<F2>"] = "toggle-fullscreen",
-                        ["<F3>"] = "toggle-preview-wrap",
-                        ["<F4>"] = "toggle-preview",
-                        ["<F5>"] = "toggle-preview-ccw",
-                        ["<F6>"] = "toggle-preview-cw",
-                        ["<S-down>"] = "preview-page-down",
-                        ["<S-up>"] = "preview-page-up",
-                        ["<S-left>"] = "preview-page-reset",
-                    },
-                    fzf = {
-                        ["tab"] = "down",
-                        ["shift-tab"] = "up",
-                        ["ctrl-z"] = "abort",
-                        ["ctrl-u"] = "unix-line-discard",
-                        ["ctrl-f"] = "half-page-down",
-                        ["ctrl-b"] = "half-page-up",
-                        ["ctrl-a"] = "beginning-of-line",
-                        ["ctrl-e"] = "end-of-line",
-                        ["alt-a"] = "toggle-all",
-                        ["f3"] = "toggle-preview-wrap",
-                        ["f4"] = "toggle-preview",
-                        ["shift-down"] = "preview-page-down",
-                        ["shift-up"] = "preview-page-up",
-                    },
+                actions = {
+                    ["alt-i"] = { function() end },
+                    ["alt-h"] = { function() end },
                 },
-            })
-        end,
+            },
+            grep = {
+                actions = {
+                    ["alt-i"] = { function() end },
+                    ["alt-h"] = { function() end },
+                },
+            },
+            keymap = {
+                fzf = {
+                    ["tab"] = "down",
+                    ["shift-tab"] = "up",
+                    ["ctrl-j"] = "preview-page-down",
+                    ["ctrl-k"] = "preview-page-up",
+                },
+            },
+        },
+        keys = {
+            { "<leader><space>", "<cmd>FzfLua files<cr>", desc = "Find Files (Root Dir)" },
+        },
     },
     {
         "hrsh7th/nvim-cmp",
