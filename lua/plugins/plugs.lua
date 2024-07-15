@@ -54,9 +54,6 @@ return {
                 },
             },
         },
-        keys = {
-            { "<leader><space>", "<cmd>FzfLua files<cr>", desc = "Find Files (Root Dir)" },
-        },
     },
     {
         "hrsh7th/nvim-cmp",
